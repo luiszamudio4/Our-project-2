@@ -2,6 +2,12 @@
 A repository for starting project 2
 - [X] Copy this template
 
+Andy Boyd
+Pablo Diaz
+Dev Jain
+Jaime Rodriguez
+Luis Zamudio
+
 ### Once you have copied this template do the following
 - [ ] Invite all collaborators
 - [ ] Create a slack channel and invite all the team members and the instructional staff
