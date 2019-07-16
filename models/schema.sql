@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-DROP DATABASE IF EXISTS crypter;
-CREATE DATABASE crypter;
-=======
 DROP DATABASE IF EXISTS testdb;
 CREATE DATABASE testdb;
 
@@ -11,7 +7,7 @@ USE crypter;
 CREATE TABLE user (
     id int AUTO_INCREMENT NOT NULL,
 	username varchar(100) NOT NULL,
-    password varchar(100),
+    password varchar(100) NOT NULL,
     usd_balance int,
     coins_owned int,
 	PRIMARY KEY(id)
@@ -42,4 +38,3 @@ VALUES
     (32500, 2);   
 
 select * from user
->>>>>>> master
