@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Coin = sequelize.define("coins", {
+  var Coin = sequelize.define("Coins", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -7,11 +7,14 @@ module.exports = function(sequelize, DataTypes) {
     price: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }    
+    },
+    coinRank: DataTypes.INTEGER    
   });
 
   Coin.associate = function(models) {
-    Coin.belongsTo(models.User);
+    Coin.belongsTo(models.User,{
+      allowNull: false
+    });
   };
 
   return Coin;
