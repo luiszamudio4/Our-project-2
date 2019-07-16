@@ -4,37 +4,35 @@ CREATE DATABASE testdb;
 CREATE DATABASE crypter;
 USE crypter;
 
-CREATE TABLE user (
+CREATE TABLE users (
     id int AUTO_INCREMENT NOT NULL,
 	username varchar(100) NOT NULL,
     password varchar(100) NOT NULL,
-    usd_balance int,
-    coins_owned int,
+    usdBalance int,
 	PRIMARY KEY(id)
 );
 
-CREATE TABLE coin (
+CREATE TABLE coins (
     id int AUTO_INCREMENT NOT NULL,
 	price int NOT NULL,
-    coin_rank int,
-    username varchar(50) NOT NULL,
+    coinRank int,
 	PRIMARY KEY(id)
 );
 
           
-INSERT INTO user
+INSERT INTO users
     (username)
 VALUES
     ('Dr. McGregor');
 
-INSERT INTO user
+INSERT INTO users
     (password)
 VALUES
     ('YaBabyMama123');
 
-INSERT INTO user
-    (usd_balance, coins_owned)
+INSERT INTO users
+    (usd_balance)
 VALUES
-    (32500, 2);   
+    (32500);   
 
-select * from user
+select * from users;

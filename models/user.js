@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-  var User = sequelize.define("users", {
+  var User = sequelize.define("User", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -11,12 +11,12 @@ module.exports = function(sequelize, DataTypes){
         len: [1]
       }
     },
-    balance: DataTypes.INTEGER
+    usdBalance: DataTypes.INTEGER
   });
   User.associate = function(models){
-    User.hasMany(models.Coin, {
+    User.hasMany(models.Coins, {
       as: "coin",
-      foreignKey: "userId",
+      foreignKey: models.Coins.id,
       ondelete: "cascade"
     });
   };
