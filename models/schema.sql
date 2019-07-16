@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+DROP DATABASE IF EXISTS crypter;
+CREATE DATABASE crypter;
+=======
 DROP DATABASE IF EXISTS testdb;
 CREATE DATABASE testdb;
 
@@ -38,3 +42,4 @@ VALUES
     (32500, 2);   
 
 select * from user
+>>>>>>> master
