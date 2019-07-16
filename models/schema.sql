@@ -6,7 +6,7 @@ USE crypter;
 
 CREATE TABLE users (
     id int AUTO_INCREMENT NOT NULL,
-	username varchar(100) NOT NULL,
+	name varchar(100) NOT NULL,
     password varchar(100) NOT NULL,
     usdBalance int,
 	PRIMARY KEY(id)

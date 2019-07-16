@@ -12,7 +12,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Coin.associate = function(models) {
-    Coin.belongsTo(models.User);
+    Coin.belongsTo(models.User,{
+      allowNull: false
+    });
   };
 
   return Coin;

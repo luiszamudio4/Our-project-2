@@ -15,7 +15,6 @@ module.exports = function(sequelize, DataTypes){
   });
   User.associate = function(models){
     User.hasMany(models.Coins, {
-      as: "coin",
       foreignKey: models.Coins.id,
       ondelete: "cascade"
     });
