@@ -11,12 +11,17 @@ module.exports = function(app) {
     res.render("register");
   });
 
+<<<<<<< HEAD
   app.get("/login", function(req, res){
     res.render("login");
   });
 
   app.post("/login", passport.authenticate("local"), function(cb){
     cb({
+=======
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.json({
+>>>>>>> 2381066f408f3c8e380ba3464a283efd95ceb7a3
       successRedirect: "/",
       failureRedirect: "/login",
       failureFlash: true
