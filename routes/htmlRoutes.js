@@ -20,10 +20,12 @@ module.exports = function(app) {
     res.render("register");
   });
 
-  app.post("/login", passport.authenticate("local"), {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.json({
+      successRedirect: "/",
+      failureRedirect: "/login",
+      failureFlash: true
+    });
   });
 
   // Load example page and pass in an example by id
