@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg navbar-light static-top bg-light">
     <div class="container" style="max-width: 90%;">
         <a class="navbar-brand" href="images/tradelogo.jpg">
@@ -470,6 +471,23 @@
       <div class="modal-footer">
         <button id='id_modal_cancel' type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button id='id_modal_ok' type="button" class="btn btn-primary">Confirm</button>
+=======
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h1>{{msg}}</h1>
+        <h2>This is our Home Page!</h2>
+        <h3>Examples:</h3>
+        <ul id="example-list" class="list-group">
+          {{#each examples}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="example/{{this.id}}">{{this.text}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+>>>>>>> master
       </div>
     </div>
   </div>
