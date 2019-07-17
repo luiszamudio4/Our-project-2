@@ -35,7 +35,6 @@ module.exports = function(app){
   // });
     
   app.patch("/api/coins/buy/:name", isAuthenticated, function(req, res) {
-    // how to get id of user logged in?
     db.Coins.update({userId: req.user.id}, {
       where: {
         name: req.params.name,
@@ -47,16 +46,17 @@ module.exports = function(app){
     });
   });
 
-  app.post("/api/register", function(req, res) {
+  app.post("api/register", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });
   });
+
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
   });
 
-  app.get("/api/users", function(req, res){
+  app.get("/api/users", isAuthenticated, function(req, res){
     db.User.findAll({
       include: [{model: db.Coins, as: "coinsOwned"}]
     }).then(function(dbUser){
@@ -64,7 +64,7 @@ module.exports = function(app){
     });
   });
 
-  app.get("/api/users/:id", function(req, res){
+  app.get("/api/users/:id", isAuthenticated, function(req, res){
     db.User.findOne({
       where: {
         id: req.params.id
