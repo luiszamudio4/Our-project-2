@@ -1,38 +1,70 @@
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
-
+DROP DATABASE IF EXISTS crypter;
 CREATE DATABASE crypter;
 USE crypter;
 
-CREATE TABLE users (
-    id int AUTO_INCREMENT NOT NULL,
-	name varchar(100) NOT NULL,
-    password varchar(100) NOT NULL,
+-- ------------- CREATE TABLE user:
+CREATE TABLE user
+(
+    id int
+    AUTO_INCREMENT NOT NULL,
+    email varchar
+    (120) NOT NULL,
+	username varchar
+    (100) NOT NULL,
+    password varchar
+    (100) NOT NULL,
     usdBalance int,
-	PRIMARY KEY(id)
+    coinsOwned int,
+	PRIMARY KEY
+    (id)
 );
 
-CREATE TABLE coins (
-    id int AUTO_INCREMENT NOT NULL,
-	price int NOT NULL,
-    coinRank int,
-	PRIMARY KEY(id)
+    -- ------------- CREATE TABLE coin:
+    CREATE TABLE coin
+    (
+        id int
+        AUTO_INCREMENT NOT NULL,
+	usd_price int NOT NULL,
+    coin_rank int,
+	PRIMARY KEY
+        (id)
 );
 
-          
-INSERT INTO users
-    (username)
-VALUES
-    ('Dr. McGregor');
 
-INSERT INTO users
-    (password)
-VALUES
-    ('YaBabyMama123');
+        -- ------------- INSERT INTO user table:
+        INSERT INTO user
+            (username)
+        VALUES
+            ('Dr. McGregor');
 
-INSERT INTO users
-    (usd_balance)
-VALUES
-    (32500);   
+        INSERT INTO user
+            (password)
+        VALUES
+            ('YaBabyMama123');
 
-select * from users;
+        INSERT INTO user
+            (usd_balance, coins_owned)
+        VALUES
+            (32500, 2);
+
+        -- ------------- INSERT INTO coin table:
+        INSERT INTO coin
+            (price)
+        VALUES
+            ('Dr. McGregor');
+
+        INSERT INTO coin
+            (coin_rank)
+        VALUES
+            ('YaBabyMama123');
+
+        INSERT INTO coin
+            (username)
+        VALUES
+            ('Dr. Baggio');
+
+        -- ------------- SELECT all:
+        select *
+        from user;
+        select *
+        from coin;
