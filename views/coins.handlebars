@@ -1,19 +1,12 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Cryptocoins</h5>
-          <p>
-            <strong>{{coins.name}}</strong></p>
-          <p>
-          <p>
-            <strong>Price</strong>: ${{coins.price}}</p>
-          <p>
-            <strong>Ranking:</strong> {{coins.coinRank}}</p>
-            <a href="/">← Back To Home</a>
+    <div class="row">
+        <div class="col-8 offset-2 align-items-center">
+            <h3>Cryptocurrencies</h3>
+            <ul id="userlist" class="list-group">
+            {{#each coins}}
+                {{>coins/coin-block}}
+            {{/each}}
+            </ul>
         </div>
-      </div>
     </div>
-  </div>
 </div>
