@@ -19,7 +19,6 @@ pre {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 .disabledbutton {
     pointer-events: none;
     opacity: 0.4;
@@ -54,6 +53,7 @@ pre {
 
 .container {
     max-width: 100%;
+    background-color: #ededec;
 }
 .d-flex-chat {
   overflow-y:auto;
