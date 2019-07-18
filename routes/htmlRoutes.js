@@ -21,7 +21,7 @@ module.exports = function(app) {
   });
 
   app.post("/login", passport.authenticate("local"), function(req,res){
-    console.log("=======================")
+    console.log("=======================");
     res.json(req.user);
   });
 
