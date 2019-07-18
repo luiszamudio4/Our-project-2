@@ -1,4 +1,4 @@
-var $user = $("username");
+var $user = $("#username");
 var $password = $("#password");
 var $login = $("submit");
 
@@ -9,8 +9,8 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "/login",
-      data: JSON.stringify(user)
+      url: "/api/login",
+      data: user
     });
   }
 };
