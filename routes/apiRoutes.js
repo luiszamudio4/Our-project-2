@@ -3,7 +3,7 @@ var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app){
-  app.get("/api/coins", isAuthenticated, function(req, res) {
+  app.get("/api/coins/", isAuthenticated, function(req, res) {
     var query= {};
     if(req.query.user_id){
       query.UserId = req.query.user_id;
@@ -27,9 +27,10 @@ module.exports = function(app){
     });
   });
     
-  // // Create a new example
-  // app.post("/api/coins", function(req, res) {
-  //   db.Coins.create(req.body).then(function(dbCoins) {
+  // Create a new example
+  // app.post("/api/coins/", function(req, res) {
+  //   console.log(req.body);
+  //   db.Coin.create(req.body).then(function(dbCoins) {
   //     res.json(dbCoins);
   //   });
   // });

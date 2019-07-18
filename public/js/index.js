@@ -1,9 +1,9 @@
 // Get references to page elements
-var $email = $("#email");
-var $username = $("#username");
-var $password = $("#password");
+var $email = $("#newEmail");
+var $username = $("#newUser");
+var $password = $("#newPwd");
 var $submitBtn = $("#register");
-var $exampleList = $("#example-list");
+var $userList = $("#userlist");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -48,17 +48,17 @@ var refreshUsers = function() {
         })
         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+      // var $button = $("<button>")
+      //   .addClass("btn btn-danger float-right delete")
+      //   .text("ｘ");
 
-      $li.append($button);
+      // $li.append($button);
 
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($user);
+    $userList.empty();
+    $userList.append($user);
   });
 };
 
@@ -74,12 +74,13 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(user.email && user.name && user.password)) {
-    alert("You must enter blabalabla!");
+    alert("You must enter valid info!");
     return;
   }
 
-  API.saveUser(user).then(function(){
+  API.saveUser(user).then(function(req, res){
     refreshUsers();
+    res.redirect("/");
   });
 
   $email.val("");
@@ -101,4 +102,4 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$userList.on("click", ".delete", handleDeleteBtnClick);
