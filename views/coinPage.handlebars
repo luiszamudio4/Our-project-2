@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="column-md-12 offset-2">
+            <h1>{{coin.name}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column-md-12 offset-2">
+            <div class="row">
+                <div class="column-md-6"></div>
+                <div id="info">
+                    <ul class="list-group">
+                        <li>
+                            <h4>Market price: ${{coin.price}}</h4>
+                        </li>
+                        <li>
+                            <h4>Coin ranking: {{coin.coinRank}}</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="float:right;">
+                <div class="column-md-6">
+                    <div id="chart" style="width: 50%; height: 50vh;">
+                    eventually there will be a graph here
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
