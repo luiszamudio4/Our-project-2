@@ -20,8 +20,9 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.post("/login", passport.authenticate("local"), function(req, res){
-    res.json(req.body);
+  app.post("/login", passport.authenticate("local"), function(req,res){
+    console.log("=======================");
+    res.json(req.user);
   });
 
   app.get("/coins/", function(req, res){

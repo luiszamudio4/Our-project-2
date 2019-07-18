@@ -4,10 +4,11 @@ var LocalStrategy = require("passport-local").Strategy;
 
 passport.use(new LocalStrategy (
   function(username, password, done){
-    db.User.findOne({where: {
-      username: username
-    }}).then(function(err, dbUser){
-      if(err) {return done(err); }
+    console.log(username);
+    console.log(password);
+    db.User.findOne({
+      where: { username: username }
+    }).then(function(dbUser){
       if(!dbUser){
         return done(null, false, {message: "Incorrect username" });
       } else if(!dbUser.validPassword(password)){
