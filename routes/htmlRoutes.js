@@ -1,36 +1,55 @@
 var db = require("../models");
 var passport = require("../config/passport");
-var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page
-  app.get("/", isAuthenticated, function(req, res) {
-    if(!isAuthenticated){
-      res.redirect("/login");
-    }
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get("/", function(req, res) {
+    db.Coin.findAll({}).then(function(dbCoin) {
       res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+        msg: "Hello!",
+        coins: dbCoin
       });
     });
   });
 
-  app.post("/register", function(req, res){
+  app.get("/register", function(req, res){
     res.render("register");
   });
 
-  app.post("/login", passport.authenticate("local"), {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true
+  app.get("/login", function(req, res){
+    res.render("login");
   });
 
+  app.post("/login", passport.authenticate("local"), function(cb){
+    cb({
+      successRedirect: "/",
+      failureRedirect: "/login",
+      failureFlash: true
+    });
+  });
+
+  app.get("/coins/", function(req, res){
+    db.Coin.findAll({}).then(function(dbCoin){
+      res.render("coins", {coins: dbCoin});
+    });
+  });
+
+  app.get("/coins/:name", function(req, res){
+    db.Coin.findOne({ where: { name: req.params.name} }).then(function(dbCoin){
+      res.render("coins", {coins: dbCoin});
+    });
+  });
+
+  app.get("/users/", function(req, res){
+    db.User.findAll({}).then(function(dbUser){
+      res.render("users", {user: dbUser});
+    });
+  });
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
+  app.get("/users/:id", function(req, res) {
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+      res.render("users", {
+        user: dbUser
       });
     });
   });

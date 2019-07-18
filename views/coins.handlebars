@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2 align-items-center">
+            <h3>Cryptocurrencies</h3>
+            <ul id="userlist" class="list-group">
+            {{#each coins}}
+                {{>coins/coin-block}}
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

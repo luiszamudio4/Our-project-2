@@ -1,38 +1,22 @@
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
-
+DROP DATABASE IF EXISTS crypter;
 CREATE DATABASE crypter;
 USE crypter;
 
-CREATE TABLE users (
+------------- CREATE TABLE user:
+CREATE TABLE user(
     id int AUTO_INCREMENT NOT NULL,
-	name varchar(100) NOT NULL,
+    username varchar(100) NOT NULL,
+    email varchar(120) NOT NULL,
     password varchar(100) NOT NULL,
-    usdBalance int,
-	PRIMARY KEY(id)
+    usdBalance decimal(10,2) DEFAULT 30000.00,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE coins (
+    -- ------------- CREATE TABLE coin:
+    CREATE TABLE coin(
     id int AUTO_INCREMENT NOT NULL,
-	price int NOT NULL,
+    name varchar(100) NOT NULL,
+	usdPrice decimal (10,2) NOT NULL,
     coinRank int,
 	PRIMARY KEY(id)
 );
-
-          
-INSERT INTO users
-    (username)
-VALUES
-    ('Dr. McGregor');
-
-INSERT INTO users
-    (password)
-VALUES
-    ('YaBabyMama123');
-
-INSERT INTO users
-    (usd_balance)
-VALUES
-    (32500);   
-
-select * from users;
