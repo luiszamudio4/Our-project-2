@@ -8,22 +8,22 @@ module.exports = function(app){
     if(req.query.user_id){
       query.UserId = req.query.user_id;
     }
-    db.Coins.findAll({
+    db.Coin.findAll({
       where: query,
       include: [db.User]
-    }).then(function(dbCoins) {
-      res.json(dbCoins);
+    }).then(function(dbCoin) {
+      res.json(dbCoin);
     });
   });
     
   app.get("/api/coins/:name", isAuthenticated, function(req, res){
-    db.Coins.findOne({
+    db.Coin.findOne({
       where: {
         name: req.params.name
       },
       include: [db.User]
-    }).then(function(dbCoins){
-      res.json(dbCoins);
+    }).then(function(dbCoin){
+      res.json(dbCoin);
     });
   });
     
@@ -35,18 +35,19 @@ module.exports = function(app){
   // });
     
   app.patch("/api/coins/buy/:name", isAuthenticated, function(req, res) {
-    db.Coins.update({userId: req.user.id}, {
+    db.Coin.update({userId: req.user.id}, {
       where: {
         name: req.params.name,
         userId: null
       }
-    }).then(function(dbCoins){
-      console.log(dbCoins);
-      res.json(dbCoins);
+    }).then(function(dbCoin){
+      console.log(dbCoin);
+      res.json(dbCoin);
     });
   });
 
-  app.post("api/register", function(req, res) {
+  app.post("/api/register", function(req, res) {
+    console.log(req.body);
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });

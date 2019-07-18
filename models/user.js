@@ -3,6 +3,11 @@ var bcrypt = require("bcryptjs");
 // ------------------ SEQUALIZE - DB TABLES
 module.exports = function(sequelize, DataTypes){
   var User = sequelize.define("User", {
+    // ------------------ USERNAME
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     // ------------------ EMAIL
     email: {
       type: DataTypes.STRING,
@@ -10,14 +15,6 @@ module.exports = function(sequelize, DataTypes){
       unique: true,
       validate: {
         isEmail: true
-      }
-    },
-    // ------------------ USERNAME
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
       }
     },
     // ------------------ PASSWORD
@@ -29,8 +26,10 @@ module.exports = function(sequelize, DataTypes){
         len: [1]
       }
     },
-    // ------------------ USD BALANCE
-    usdBalance: DataTypes.INTEGER
+    usdBalance: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 30000.00
+    }
   });
 
   // ------------------ COINS OWNED
