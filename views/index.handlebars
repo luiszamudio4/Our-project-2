@@ -1,13 +1,13 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
-      <img src="/OpenTrade6.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="/images/tradelogo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
       FleXTrade
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -34,19 +34,18 @@
   </div>
 </nav>
 <br>
-</nav>
 <br>
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <h3>Examples:</h3>
+        <h2>Welcome to FleXTrade!!</h2>
+        <h3>Cryptocoins:</h3>
         <ul id="example-list" class="list-group">
-          {{#each examples}}
+          {{#each coins}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="coins/{{this.name}}">{{this.name}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
 
           </li>

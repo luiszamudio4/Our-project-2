@@ -4,7 +4,12 @@ var passport = require("../config/passport");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index", {msg:"Hello!"});
+    db.Coin.findAll({}).then(function(dbCoin) {
+      res.render("index", {
+        msg: "Hello!",
+        coins: dbCoin
+      });
+    });
   });
 
   app.get("/register", function(req, res){
@@ -23,11 +28,28 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/coins/", function(req, res){
+    db.Coin.findAll({}).then(function(dbCoin){
+      res.render("coins", {coins: dbCoin});
+    });
+  });
+
+  app.get("/coins/:name", function(req, res){
+    db.Coin.findOne({ where: { name: req.params.name} }).then(function(dbCoin){
+      res.render("coins", {coins: dbCoin});
+    });
+  });
+
+  app.get("/users/", function(req, res){
+    db.User.findAll({}).then(function(dbUser){
+      res.render("users", {user: dbUser});
+    });
+  });
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
+  app.get("/users/:id", function(req, res) {
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+      res.render("users", {
+        user: dbUser
       });
     });
   });
