@@ -14,9 +14,7 @@ var API = {
       },
       type: "POST",
       url: "/api/register",
-      data: JSON.stringify(user)
-    }).then(function(req, res){
-      res.redirect("/");
+      data: user
     });
   },
   getUser: function() {
@@ -69,11 +67,11 @@ var handleFormSubmit = function(event) {
 
   var user = {
     email: $email.val().trim(),
-    name: $username.val().trim(),
+    username: $username.val().trim(),
     password: $password.val().trim()
   };
 
-  if (!(user.email && user.name && user.password)) {
+  if (!(user.email && user.username && user.password)) {
     alert("You must enter valid info!");
     return;
   }

@@ -1,4 +1,4 @@
-var $user = $("username");
+var $user = $("#username");
 var $password = $("#password");
 var $login = $("submit");
 
@@ -9,8 +9,8 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "/login",
-      data: JSON.stringify(user)
+      url: "/api/login",
+      data: user
     });
   }
 };
@@ -25,7 +25,12 @@ var handleLog = function(event){
     alert("You must enter valid info!");
     return;
   }
-  API.logUser(user);
+  API.logUser(user).then(function(req, res){
+    if(!user){
+      res.redirect("/login");
+    }
+    res.redirect("/");
+  });
 };
 
 $login.on("click", handleLog);

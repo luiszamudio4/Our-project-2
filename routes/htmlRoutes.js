@@ -20,12 +20,8 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.post("/login", passport.authenticate("local"), function(cb){
-    cb({
-      successRedirect: "/",
-      failureRedirect: "/login",
-      failureFlash: true
-    });
+  app.post("/login", passport.authenticate("local"), function(req, res){
+    res.json(req.body);
   });
 
   app.get("/coins/", function(req, res){

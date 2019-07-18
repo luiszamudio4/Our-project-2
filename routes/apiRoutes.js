@@ -49,7 +49,11 @@ module.exports = function(app){
 
   app.post("/api/register", function(req, res) {
     console.log(req.body);
-    db.User.create(req.body).then(function(dbUser) {
+    db.User.create({
+      email: req.body.email, 
+      username: req.body.name, 
+      password: req.body.password
+    }).then(function(dbUser) {
       res.json(dbUser);
     });
   });

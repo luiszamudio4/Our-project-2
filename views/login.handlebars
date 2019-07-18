@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Please log in</h2>
-    <form class="clearfix mb-4" action="/login" method="post">
-        <div class="form-group">
+    <form class="clearfix mb-4">
+        <div class="form-group" action="/api/login" method="post">
         <label for="username">Username</label>
         <input type="text" id="username" class="form-control" name="username" placeholder="Enter username">
         </div>
@@ -14,4 +14,5 @@
     <h6><a href="/register">Need to sign up?</a></h6>
 </div>
 
-<script src="../public/js/login.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/log.js"></script>
