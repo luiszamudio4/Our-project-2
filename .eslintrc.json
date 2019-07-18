@@ -5,10 +5,6 @@
         "node": true,
         "mocha": true
     },
-    "extends": "prettier",
-    "plugins": [
-        "prettier"
-      ],
     "rules": {
         "no-duplicate-case":"error",
         "no-empty":"error",

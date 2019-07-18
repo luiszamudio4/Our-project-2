@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "Monica123!",
+=======
+    "password": "rootroot",
+>>>>>>> master
     "database": "crypter",
     "host": "localhost",
     "dialect": "mysql"
@@ -9,7 +13,7 @@
   "test": {
     "username": "root",
     "password": null,
-    "database": "testdb",
+    "database": "test",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
@@ -19,3 +23,4 @@
     "dialect": "mysql"
   }
 }
+
