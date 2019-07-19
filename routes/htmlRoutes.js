@@ -26,7 +26,7 @@ module.exports = function(app) {
 
   // --------- /LOGIN - POST
   app.post("/login", passport.authenticate("local"), function(req,res){
-    console.log("=======================")
+    console.log("=======================");
     res.json(req.user);
   });
 
@@ -40,7 +40,7 @@ module.exports = function(app) {
   // Load example page and pass in an example by id
   app.get("/users/:id", function(req, res) {
     db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
-      res.render("users", {
+      res.render("profile", {
         user: dbUser
       });
     });
