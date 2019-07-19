@@ -6,7 +6,7 @@ module.exports = function(app){
   // ------- API/REGISTER
   app.post("/api/register", function (req, res) {
     console.log(req.body);
-    db.User.create(req.body).then(function (dbUser) {
+    db.user.create(req.body).then(function (dbUser) {
       res.json(dbUser);
     });
   });
@@ -18,7 +18,7 @@ module.exports = function(app){
 
   // ------- API/USERS
   app.get("/api/users", isAuthenticated, function (req, res) {
-    db.User.findAll({
+    db.user.findAll({
       include: [{ model: db.Coins, as: "coinsOwned" }]
     }).then(function (dbUser) {
       res.json(dbUser);
@@ -26,7 +26,7 @@ module.exports = function(app){
   });
   // ------- API/USERS/:ID - FIND
   app.get("/api/users/:id", isAuthenticated, function (req, res) {
-    db.User.findOne({
+    db.user.findOne({
       where: {
         id: req.params.id
       }
@@ -36,7 +36,7 @@ module.exports = function(app){
   });
   // ------- API/USERS/:ID - DELETE
   app.delete("/api/users/:id", isAuthenticated, function (req, res) {
-    db.User.destroy({ where: { id: req.params.id } }).then(function (dbUser) {
+    db.user.destroy({ where: { id: req.params.id } }).then(function (dbUser) {
       res.json(dbUser);
     });
   });
@@ -47,20 +47,20 @@ module.exports = function(app){
     if(req.query.user_id){
       query.UserId = req.query.user_id;
     }
-    db.Coin.findAll({
+    db.coin.findAll({
       where: query,
-      include: [db.User]
+      include: [db.user]
     }).then(function(dbCoin) {
       res.json(dbCoin);
     });
   });
   // ------- API/COINS/:NAME 
   app.get("/api/coins/:name", isAuthenticated, function(req, res){
-    db.Coin.findOne({
+    db.coin.findOne({
       where: {
         name: req.params.name
       },
-      include: [db.User]
+      include: [db.user]
     }).then(function(dbCoin){
       res.json(dbCoin);
     });
@@ -73,7 +73,7 @@ module.exports = function(app){
   // });
   // ------- API/COINS/BUY/:NAME 
   app.patch("/api/coins/buy/:name", isAuthenticated, function(req, res) {
-    db.Coin.update({userId: req.user.id}, {
+    db.coin.update({userId: req.user.id}, {
       where: {
         name: req.params.name,
         userId: null

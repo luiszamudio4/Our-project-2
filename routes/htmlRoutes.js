@@ -6,7 +6,7 @@ module.exports = function(app) {
   // --------- / - MAIN PAGE
   // Load index page
   app.get("/", function(req, res) {
-    db.Coin.findAll({}).then(function(dbCoin) {
+    db.coin.findAll({}).then(function(dbCoin) {
       res.render("index", {
         msg: "Hello!",
         coins: dbCoin
@@ -32,14 +32,14 @@ module.exports = function(app) {
 
   // --------- /USERS
   app.get("/users/", function(req, res){
-    db.User.findAll({}).then(function(dbUser){
+    db.user.findAll({}).then(function(dbUser){
       res.render("users", {user: dbUser});
     });
   });
   // --------- /USERS/:ID
   // Load example page and pass in an example by id
   app.get("/users/:id", function(req, res) {
-    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+    db.user.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
       res.render("profile", {
         user: dbUser
       });
@@ -48,14 +48,14 @@ module.exports = function(app) {
 
   // --------- /COINS
   app.get("/coins/", function (req, res) {
-    db.Coin.findAll({}).then(function (dbCoin) {
+    db.coin.findAll({}).then(function (dbCoin) {
       res.render("coins", { coins: dbCoin });
     });
   });
 
   // --------- /COINS/:NAME
   app.get("/coins/:name", function (req, res) {
-    db.Coin.findOne({ where: { name: req.params.name } }).then(function (dbCoin) {
+    db.coin.findOne({ where: { name: req.params.name } }).then(function (dbCoin) {
       res.render("coins", { coins: dbCoin });
     });
   });

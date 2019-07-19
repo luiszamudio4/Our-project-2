@@ -6,7 +6,7 @@ passport.use(new LocalStrategy (
   function(username, password, done){
     console.log(username)
     console.log(password)
-    db.User.findOne({
+    db.user.findOne({
       where: { username: username }
     }).then(function(dbUser){
       if(!dbUser){
