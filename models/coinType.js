@@ -1,7 +1,5 @@
-
-// ------------------ SEQUELIZE - DB COIN TABLES
 module.exports = function(sequelize, DataTypes) {
-  var coin = sequelize.define("coin", {
+  var coinType = sequelize.define("cointype", {
     // ------------------ NAME
     name: {
       type: DataTypes.STRING,
@@ -11,15 +9,16 @@ module.exports = function(sequelize, DataTypes) {
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
-    },
-    amount: DataTypes.INTEGER
+    }
   });
-
   
-  coin.associate = function(models) {
-    coin.belongsTo(models.coinType);
-    coin.belongsTo(models.portfolio);
+    
+  coinType.associate = function(models) {
+    coinType.hasMany(models.coin,
+      {foreignKey: models.coinType.id}
+    );
   };
-
-  return coin;
+  
+  return coinType;
 };
+  

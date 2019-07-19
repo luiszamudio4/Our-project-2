@@ -1,13 +1,17 @@
 module.exports = function(sequelize, DataTypes){
-  var Portfolios = sequelize.define("Portfolios", {
-    name: DataTypes.STRING
+  var portfolio = sequelize.define("portfolio", {
+    name: DataTypes.STRING,
+    usdBalance: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 30000.00
+    }
   });
 
-  Portfolios.associate = function(models){
-    Portfolios.hasMany(models.Coins, {
-      foreignKey: models.Coins.id
+  portfolio.associate = function(models){
+    portfolio.hasMany(models.coin, {
+      foreignKey: models.coin.id
     });
-    Portfolios.belongsTo(models.Users);
+    portfolio.belongsTo(models.user);
   };
-  return Portfolios;
+  return portfolio;
 };
