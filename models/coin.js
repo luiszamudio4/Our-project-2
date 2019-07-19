@@ -16,9 +16,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   
-  coin.associate = function(models) {
-    coin.belongsTo(models.User);
-  };
+  // coin.associate = function(models) {
+  //   coin.belongsTo(models.User);
+  // };
 
   return coin;
 };
