@@ -1,7 +1,7 @@
 
 // ------------------ SEQUELIZE - DB COIN TABLES
 module.exports = function(sequelize, DataTypes) {
-  var Coin = sequelize.define("Coin", {
+  var Coins = sequelize.define("Coins", {
     // ------------------ NAME
     name: {
       type: DataTypes.STRING,
@@ -17,9 +17,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   
-  Coin.associate = function(models) {
-    Coin.belongsTo(models.User);
+  Coins.associate = function(models) {
+    Coins.belongsTo(models.Portfolios);
   };
 
-  return Coin;
+  return Coins;
 };

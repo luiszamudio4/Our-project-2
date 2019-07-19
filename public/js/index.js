@@ -14,7 +14,7 @@ var API = {
       },
       type: "POST",
       url: "/api/register",
-      data: user
+      data: JSON.stringify(user)
     });
   },
   getUser: function() {
@@ -76,9 +76,8 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveUser(user).then(function(req, res){
+  API.saveUser(user).then(function(){
     refreshUsers();
-    res.redirect("/");
   });
 
   $email.val("");

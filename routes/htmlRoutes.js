@@ -1,10 +1,11 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Coin.findAll({}).then(function(dbCoin) {
+    db.Coins.findAll({}).then(function(dbCoin) {
       res.render("index", {
         msg: "Hello!",
         coins: dbCoin
@@ -20,31 +21,30 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.post("/login", passport.authenticate("local"), function(req,res){
-    console.log("=======================");
+  app.post("/login", passport.authenticate("local"), isAuthenticated, function(req,res){
     res.json(req.user);
   });
 
   app.get("/coins/", function(req, res){
-    db.Coin.findAll({}).then(function(dbCoin){
+    db.Coins.findAll({}).then(function(dbCoin){
       res.render("coins", {coins: dbCoin});
     });
   });
 
   app.get("/coins/:name", function(req, res){
-    db.Coin.findOne({ where: {name: req.params.name} }).then(function(dbCoin){
+    db.Coins.findOne({ where: {name: req.params.name} }).then(function(dbCoin){
       res.render("coinPage", {coin: dbCoin});
     });
   });
 
   app.get("/users/", function(req, res){
-    db.User.findAll({}).then(function(dbUser){
+    db.Users.findAll({}).then(function(dbUser){
       res.render("users", {user: dbUser});
     });
   });
   // Load example page and pass in an example by id
   app.get("/users/:id", function(req, res) {
-    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+    db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
       res.render("profile", {
         user: dbUser
       });
