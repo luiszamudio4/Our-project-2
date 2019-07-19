@@ -2,7 +2,7 @@ var bcrypt = require("bcryptjs");
 
 // ------------------ SEQUALIZE - DB TABLES
 module.exports = function(sequelize, DataTypes){
-  var User = sequelize.define("User", {
+  var user = sequelize.define("user", {
     // ------------------ USERNAME
     username: {
       type: DataTypes.STRING,
@@ -33,22 +33,22 @@ module.exports = function(sequelize, DataTypes){
   });
 
   // ------------------ COINS OWNED
-  User.associate = function(models){
-    User.hasMany(models.Coin, {
+  user.associate = function(models){
+    user.hasMany(models.coin, {
       as: "coinsOwned",
-      foreignKey: models.Coin.id,
+      foreignKey: models.coin.id,
       ondelete: "cascade"
     });
   };
 
   // ------------------ VALIDATION
-  User.prototype.validPassword = function(password){
+  user.prototype.validPassword = function(password){
     return bcrypt.compareSync(password, this.password);
   };
 
   // ------------------ AUTHENTICATION
-  User.addHook("beforeCreate", function(user){
+  user.addHook("beforeCreate", function(user){
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
-  return User;
+  return user;
 };
