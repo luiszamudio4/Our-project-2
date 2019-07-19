@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var coinType = sequelize.define("cointype", {
+  var coinType = sequelize.define("coinType", {
     // ------------------ NAME
     name: {
       type: DataTypes.STRING,

@@ -6,11 +6,7 @@ passport.use(new LocalStrategy (
   function(username, password, done){
     console.log(username);
     console.log(password);
-<<<<<<< HEAD
-    db.User.findOne({
-=======
     db.user.findOne({
->>>>>>> 6b873cd394b8f44d5515d533d87d47307488c972
       where: { username: username }
     }).then(function(dbUser){
       if(!dbUser){
