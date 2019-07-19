@@ -30,9 +30,15 @@ module.exports = function(sequelize, DataTypes){
 
   // ------------------ COINS OWNED
   user.associate = function(models){
+<<<<<<< HEAD
     user.hasOne(models.Portfolios, {
       as: "portfolio",
       foreignKey: models.Portfolios.id,
+=======
+    user.hasMany(models.coin, {
+      as: "coinsOwned",
+      foreignKey: models.coin.id,
+>>>>>>> master
       ondelete: "cascade"
     });
   };

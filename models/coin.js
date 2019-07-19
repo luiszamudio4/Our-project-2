@@ -1,4 +1,3 @@
-
 // ------------------ SEQUELIZE - DB COIN TABLES
 module.exports = function(sequelize, DataTypes) {
   var coin = sequelize.define("coin", {
@@ -16,10 +15,16 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   
+<<<<<<< HEAD
   coin.associate = function(models) {
     coin.belongsTo(models.coinType);
     coin.belongsTo(models.portfolio);
   };
+=======
+  // coin.associate = function(models) {
+  //   coin.belongsTo(models.User);
+  // };
+>>>>>>> master
 
   return coin;
 };
