@@ -16,8 +16,12 @@ module.exports = function(sequelize, DataTypes) {
 
   
   coin.associate = function(models) {
+<<<<<<< HEAD
     coin.belongsTo(models.coinType);
     coin.belongsTo(models.portfolio);
+=======
+    coin.belongsTo(models.Portfolios);
+>>>>>>> bac1a6d264101566e31d00efbbd1f799b0335c62
   };
 
   return coin;
