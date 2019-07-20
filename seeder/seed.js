@@ -8,16 +8,14 @@ if (process.env.NODE_ENV === "test") {
 }
 
 db.sequelize.sync(syncOptions).then(function () {
-  db.coin.bulkCreate([
+  db.coinType.bulkCreate([
     {
       name: "Bitcoin",
-      price: 9814.45,
-      coinRank: 1
+      price: 10420.45
     },
     {
       name: "Ethereum",
-      price: 213.65,
-      coinRank: 2
+      price: 223.62
     }
   ]).then(function (coins) {
     console.log(coins);
@@ -28,7 +26,9 @@ db.sequelize.sync(syncOptions).then(function () {
       email:"daddymac@yahoo.com",
       password:"jumpjump123"
     }
-  );
+  ).then(function(user){
+    console.log(user);
+  });
 });
 
 // insert into coin(name, price, coinRank)

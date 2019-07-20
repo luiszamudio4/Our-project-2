@@ -1,5 +1,4 @@
 var db = require("../models");
-var passport = require("../config/passport");
 
 module.exports = function(app) {
 
@@ -24,13 +23,6 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  // --------- /LOGIN - POST
-  app.post("/login", passport.authenticate("local"), function(req,res){
-    console.log("=======================");
-    res.json(req.user);
-  });
-
-  // --------- /USERS
   app.get("/users/", function(req, res){
     db.user.findAll({}).then(function(dbUser){
       res.render("users", {user: dbUser});
@@ -49,14 +41,14 @@ module.exports = function(app) {
   // --------- /COINS
   app.get("/coins/", function (req, res) {
     db.coin.findAll({}).then(function (dbCoin) {
-      res.render("coins", { coins: dbCoin });
+      res.render("coins", { coin: dbCoin });
     });
   });
 
   // --------- /COINS/:NAME
   app.get("/coins/:name", function (req, res) {
     db.coin.findOne({ where: { name: req.params.name } }).then(function (dbCoin) {
-      res.render("coins", { coins: dbCoin });
+      res.render("coinPage", { coin: dbCoin });
     });
   });
 
