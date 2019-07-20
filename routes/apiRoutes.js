@@ -62,28 +62,17 @@ module.exports = function(app){
     });
   });
     
-  // Create a new example (this is a test function)
-  app.post("/api/coins", function(req, res) {
-    db.coin.create(req.body).then(function(dbCoin) {
-      res.json(dbCoin);
-    });
-  });
-    
   // -----------------------------------
   app.post("/api/coins/buy/:id", isAuthenticated, function(req, res) {
     var coinId = req.params.id;
-    var amount = req.body.amount;
-    console.log("THIS IS MY FUNCTION");
-    
-    // console.log(res.json({coinId, amount, user: req.user}));
+    var amount = req.body.amount;    
     db.portfolio.findOne({where: {userId: req.user.id}
     }).then(function(dbP){
       db.coinType.findOne({where:{id: coinId}}).then(function(newCoin){
         var totalCost = newCoin.price * amount;
         if(dbP.usdBalance > totalCost){
           var newBalance = dbP.usdBalance - totalCost;
-          debugger;
-          db.coin.findOne({where: {PortfolioId: dbP.id, CoinTypeId:newCoin.id }}).then(function(dbCoin){
+          db.coin.findOne({where: {PortfolioId: dbP.id, CoinTypeId: newCoin.id }}).then(function(dbCoin){
             if(!dbCoin){
               db.coin.create({
                 name: newCoin.name,
@@ -101,40 +90,39 @@ module.exports = function(app){
                 }).then(function(dbC){
                 db.portfolio.update({usdBalance: newBalance}, 
                   {where: {id: dbP.id}});
-
-                console.log("SECOND");
                 res.json(dbC);
               });
             }
           });
         }else{
-          console.log("THIRD");
           return res.status(403).send("Sorry! Not enough money");
         }
       });
     });
-
   });
-  // if we have the money
 
-  // if we already have a portfolioid of that coin
-  // update that amount
-
-    
-    
-
-    
-
-  // db.Coins.findOne({where:
-  //   {name: req.params.name}, raw: true
-  // }).then(function(data){
-  //   delete data.id;
-  //   var newCoin = db.Coins.create(data);
-  //   db.Portfolios.create({name: user.req.username}).then(function(dbPortfolio){
-  //     newCoin.update({id: dbPortfolio.id}, {where: {id: newCoin.id}});
-  //     res.json(newCoin);
-  //   });
-  // });
- 
-
+  app.post("/api/coins/sell/:id", isAuthenticated, function(req, res) {
+    var coinId = req.params.id;
+    var amount = req.body.amount;    
+    db.portfolio.findOne({where: {userId: req.user.id}
+    }).then(function(dbP){
+      db.coinType.findOne({where:{id: coinId}}).then(function(newCoin){
+        var totalCost = newCoin.price * amount;
+        var newBalance = dbP.usdBalance + totalCost;
+        db.coin.findOne({where: {PortfolioId: dbP.id, CoinTypeId: newCoin.id }}).then(function(dbCoin){
+          if(amount > dbCoin.amount){
+            return res.status(403).send("You don't have enough coins to sell!");
+          }else{
+            db.coin.update({amount: dbCoin.amount - amount},
+              {where: {id: dbCoin.id}
+              }).then(function(dbC){
+              db.portfolio.update({usdBalance: newBalance}, 
+                {where: {id: dbP.id}});
+              res.json(dbC);
+            });
+          }
+        });
+      });
+    });
+  });
 };

@@ -1,6 +1,4 @@
 var db = require("../models");
-var passport = require("../config/passport");
-var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
@@ -25,22 +23,6 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.post("/login", passport.authenticate("local"), isAuthenticated, function(req,res){
-    res.json(req.user);
-  });
-
-  app.get("/coins/", function(req, res){
-    db.coinType.findAll({}).then(function(dbCoin){
-      res.render("coins", {coin: dbCoin});
-    });
-  });
-
-  app.get("/coins/:name", function(req, res){
-    db.coinType.findOne({ where: {name: req.params.name} }).then(function(dbCoin){
-      res.render("coinPage", {coin: dbCoin});
-    });
-  });
-
   app.get("/users/", function(req, res){
     db.user.findAll({}).then(function(dbUser){
       res.render("users", {user: dbUser});
@@ -59,14 +41,14 @@ module.exports = function(app) {
   // --------- /COINS
   app.get("/coins/", function (req, res) {
     db.coin.findAll({}).then(function (dbCoin) {
-      res.render("coins", { coins: dbCoin });
+      res.render("coins", { coin: dbCoin });
     });
   });
 
   // --------- /COINS/:NAME
   app.get("/coins/:name", function (req, res) {
     db.coin.findOne({ where: { name: req.params.name } }).then(function (dbCoin) {
-      res.render("coins", { coins: dbCoin });
+      res.render("coinPage", { coin: dbCoin });
     });
   });
 
