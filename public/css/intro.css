@@ -1,0 +1,114 @@
+.iam {
+    color:#EF626C;
+    font-size: 40px;
+}
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    /* position: fixed; */
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+/* Control the left side */
+.left {
+    left: 0;
+    /* float: left; */
+    background-color: #CCD7E4;
+    flex-grow:1;
+    height:100%;
+}
+/* Control the right side */
+.right {
+    right: 0;
+    /* float: right; */
+    background-color: #D5C9DF;
+    flex-grow:1;
+    height:100%;
+}
+/* If you want the content centered horizontally and vertically */
+.centered {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+.imgMain {
+    width: 500px !important;
+}
+/*
+Roman Silver
+#828A95
+Azureish White
+#CEEAF7
+Columbia Blue
+#CCD7E4
+Languid Lavender
+#D5C9DF
+Pink Lavender
+#DCB8CB
+*/
+  .signLog {
+    background-color: #CCD7E4;
+    border:black;
+    margin-top: 20px;
+    border-radius: 5px;
+    color:#828A95;
+    transition: margin .3s;
+    -webkit-transition: margin .3s;
+}
+.signLog:hover {
+    background-color: #DCB8CB    ;
+    transition: .4s;
+    margin: 15px;
+}
+.leftButton {
+    margin-right: 10px;
+}
+.rightButton {
+    margin-left: 10px;
+}
+.overflow{
+    display:flex;
+    height:100%;
+}
+.signUp {
+    max-width: 40%;
+    vertical-align: center;
+    margin:auto;
+    margin-top: 5%;
+    border-style: solid;
+    border-width: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: #CCD7E4;
+}
+form {
+    margin-top: 20%
+}
+.logIn {
+    max-width: 40%;
+    vertical-align: center;
+    margin:auto;
+    margin-top: 5%;
+    border-style: solid;
+    border-width: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: #CCD7E4;
+}
