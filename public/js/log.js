@@ -13,9 +13,9 @@ var API = {
       data: user
     });
   },
-  goToDashboard: function(data){
-    console.log(data);
-    if(!data){
+  goToDashboard: function(){
+    console.log(req.user);
+    if(!req.user){
       window.location.href = "/login";
     }else{
       window.location.href = "/dashboard";
@@ -34,8 +34,8 @@ var handleLog = function(event){
     alert("You must enter valid info!");
     return;
   }
-  API.logUser(user).then(function(data){
-    API.goToDashboard(data);
+  API.logUser(user).then(function(){
+    API.goToDashboard();
   });
 };
 
