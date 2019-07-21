@@ -4,7 +4,7 @@ var $login = $("submit");
 
 var API = {
   logUser: function(user){
-    return $.ajax({
+    $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
@@ -12,11 +12,20 @@ var API = {
       url: "/api/login",
       data: user
     });
+  },
+  goToDashboard: function(data){
+    console.log(data);
+    if(!data){
+      window.location.href = "/login";
+    }else{
+      window.location.href = "/dashboard";
+    }
   }
 };
 
 var handleLog = function(event){
   event.preventDefault();
+  debugger;
   var user = {
     username: $user.val().trim(),
     password: $password.val().trim()
@@ -25,11 +34,8 @@ var handleLog = function(event){
     alert("You must enter valid info!");
     return;
   }
-  API.logUser(user).then(function(req, res){
-    if(!user){
-      res.redirect("/login");
-    }
-    res.redirect("/");
+  API.logUser(user).then(function(data){
+    API.goToDashboard(data);
   });
 };
 

@@ -1,60 +1,183 @@
-    <nav class="navbar navbar-expand-lg navbar-light static-top bg-light">
-    <div class="container" style="max-width: 90%;">
-        <a class="navbar-brand" href="images/tradelogo.jpg">
-            <img  height="80" border="0" align="center"  src="images/tradelogo.jpg"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" target="_blank" href="https://coinmarketcap.com/">Market</a>
-              </li>
-          </ul>
-        </div>
-        <ul class="navbar-nav ml-auto">
-            
-                        <li class="navbar-item">
-              <a class="nav-link" href="/login">Login</a>
-            </li>
-
-            
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span >Help</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/support">Support</a>
-                  <a class="dropdown-item" href="/fees">Fees</a>
+    <div class="mainPage">
+        <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+        <coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd"
+            background-color="#CEEAF7" locale="en"></coingecko-coin-price-marquee-widget>
+        <div class="pageOne">
+            <div class="jumbotron-fluid overflow">
+                <div class="split left">
+                    <div class="centered">
+                        <img class="imgMain" src="/images/forrealthistime.png" alt="">
+                    </div>
                 </div>
-            </li>
-        </ul>
+                <div class="split right">
+                    <div class="centered">
+                        <h1 class="display-4">Welcome to
+                            <br>
+                            <span class="txt-rotate" data-period="100"
+                                data-rotate='[ "good business.", "the future.", "investing.", "blockchain.", "security."]'></span>
+                        </h1>
+                        <br />
+                        <p class="lead">We are a cryptocurrency trading platform with
+                            real-time market information that stores your user
+                            and coin information. On signup/login authentication, you will
+                            be able to view an overview of the crypto market as well as specifics for each currency
+                            type.
+                            <br>
+                            <button class="signLog leftButton">
+                                Sign Up
+                            </button>
+                            <button class="signLog rightButton">
+                                Log In
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="scroll-down"></button>
+        <div class="parallax"
+            style="background-image: url(https://images.unsplash.com/photo-1543699539-33a389c5dcfe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)">
+        </div>
+        <div class="pageTwo">
+            <div class="why">
+                <h1 class="headingWhy">
+                    What is cryptocurrency?
+                </h1>
+                <h2 class="headingWhy2">
+                    It's good business. *shakes hand*
+                </h2>
+                <p class="descWhy">
+                    Cryptocurrency is a form of payment that can be exchanged online for goods and services. Many
+                    companies have issued their own currencies, often called tokens, and these can be traded
+                    specifically for the good or service that the company provides. Think of them as you would arcade
+                    tokens or casino chips. You’ll need to exchange real currency for the cryptocurrency to access the
+                    good or service.
+                    Cryptocurrencies work using a technology called blockchain. Blockchain is a decentralized technology
+                    spread across many computers that manages and records transactions. Part of the appeal of this
+                    technology is its security.
+                </p>
+            </div>
+            <!-- <div class="news">
+                <script>
+                    (function (b, i, t, C, O, I, N) {
+                        window.addEventListener('load', function () {
+                            if (b.getElementById(C)) return;
+                            I = b.createElement(i), N = b.getElementsByTagName(i)[0];
+                            I.src = t; I.id = C; N.parentNode.insertBefore(I, N);
+                        }, false)
+                    })(document, 'script', 'https://widgets.bitcoin.com/widget.js', 'btcwdgt');
+                </script>
+                <div class="btcwdgt-news" bw-entries="30"></div>
+            </div> -->
+            <!-- <div class="jumbotron-fluid overflow">
+                <img src="https://images.unsplash.com/photo-1526913299589-f35a3ddeb7ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+            </div> -->
+            <div class="leftSide">
+                <div class="signUp">
+                    <h1>
+                        Don't have an account? Sign up below.
+                    </h1>
+                </br>
+                  <form class="clearfix mb-4" action="/api/register" method="post">
+                      <div class="form-group">
+                      <label for="newUser">Username</label>
+                      <input type="text" id="newUser" class="form-control" name="username" placeholder="Enter username">
+                      </div>
+                      <div class="form-group">
+                      <label for="newEmail">Email</label>
+                      <input type="email" id="newEmail" class="form-control" name="email" placeholder="Enter email address">
+                      </div>
+                      <div class="form-group">
+                      <label for="newPwd">Password</label>
+                      <input class="form-control" id="newPwd" name="password" type="password" placeholder="Enter password">
+                      </div>
+                      <button type="submit" id="register" class="btn btn-primary float-right">Sign up</button>
+                  </form>
+                </div>
+            </div>
+            <div class="rightSide">
+                <div class="logIn">
+                    <h1 style="text-align: left">
+                        Already have an account? Sign in below.
+                    </h1>
+                    <form class="clearfix mb-4" action="/api/login" method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" class="form-control" name="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" id="password" name="password" type="password" placeholder="Enter password">
+                        </div>
+                        <button type="submit" id="submit" class="btn btn-primary float-right">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="scroll-down"></button>
+        <div class="parallax" style="background-image: url(https://wallpapercave.com/wp/wp2337008.jpg)">
+        </div>
+        <!--<div class="pageThree">
+            <script>
+                (function (b, i, t, C, O, I, N) {
+                    window.addEventListener('load', function () {
+                        if (b.getElementById(C)) return;
+                        I = b.createElement(i), N = b.getElementsByTagName(i)[0];
+                        I.src = t; I.id = C; N.parentNode.insertBefore(I, N);
+                    }, false)
+                })(document, 'script', 'https://widgets.bitcoin.com/widget.js', 'btcwdgt');
+            </script>
+            <div class="btcwdgt-chart chart" bw-cash="true" bw-theme="light">
+            </div> 
+            TradingView Widget BEGIN
+            <div class="tradingview-widget-container chart">
+                <div class="news">
+                    <script>
+                        (function (b, i, t, C, O, I, N) {
+                            window.addEventListener('load', function () {
+                                if (b.getElementById(C)) return;
+                                I = b.createElement(i), N = b.getElementsByTagName(i)[0];
+                                I.src = t; I.id = C; N.parentNode.insertBefore(I, N);
+                            }, false)
+                        })(document, 'script', 'https://widgets.bitcoin.com/widget.js', 'btcwdgt');
+                    </script>
+                    <div class="btcwdgt-news" bw-entries="30"></div>
+                </div>
+                <div id="tradingview_7d53c"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget(
+                        {
+                            "width": 1000,
+                            "height": 700,
+                            "symbol": "COINBASE:BTCUSD",
+                            "interval": "1",
+                            "timezone": "Etc/UTC",
+                            "theme": "Light",
+                            "style": "1",
+                            "locale": "en",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_7d53c"
+                        }
+                    );
+                </script>
+            </div>
+            TradingView Widget END
+        </div> -->
     </div>
-</nav>
-<br>
-<br>
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Welcome to TradeX!!</h2>
-        <h3>Cryptocoins:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each coins}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="coins/{{this.name}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-
-          </li>
-          {{/each}}
-        </ul>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/logic.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/log.js"></script>
