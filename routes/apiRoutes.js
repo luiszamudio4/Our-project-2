@@ -45,8 +45,8 @@ module.exports = function(app){
   // ------- API/COINS
   app.get("/api/coins", isAuthenticated, function(req, res) {
     var query= {};
-    if(req.query.user_id){
-      query.UserId = req.query.user_id;
+    if(req.query.portfolioId){
+      query.UserId = req.query.portfolioId;
     }
     db.coin.findAll({
       where: query
@@ -108,19 +108,12 @@ module.exports = function(app){
   app.post("/api/coins/sell/:id", isAuthenticated, function(req, res) {
     var coinId = req.params.id;
     var amount = req.body.amount;  
-    console.log(amount);  
     db.portfolio.findOne({where: {userId: req.user.id}
     }).then(function(dbP){
-      console.log(coinId);
       db.coinType.findOne({where:{id: coinId}}).then(function(sellCoin){
-        console.log(sellCoin.price);
-        console.log(sellCoin.id);
-        console.log(dbP.id);
         var totalCost = sellCoin.price * amount;
         var newBalance = parseFloat(dbP.usdBalance) + parseFloat(totalCost);
         db.coin.findOne({where: {portfolioId: dbP.id, coinTypeId: sellCoin.id }}).then(function(dbCoin){
-          console.log(dbCoin);
-          console.log(newBalance);
           if(amount > dbCoin.amount){
             return res.status(403).send("You don't have enough coins to sell!");
           }else{
@@ -129,6 +122,7 @@ module.exports = function(app){
               }).then(function(dbC){
               db.portfolio.update({usdBalance: parseFloat(newBalance) + parseFloat(dbP.usdBalance)}, 
                 {where: {id: dbP.id}});
+              console.log(dbC);
               res.json(dbC);
             });
           }
