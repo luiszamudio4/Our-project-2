@@ -25,18 +25,14 @@ module.exports = function(sequelize, DataTypes){
       validate: {
         len: [1]
       }
-    },
-    usdBalance: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: 30000.00
     }
   });
 
   // ------------------ COINS OWNED
   user.associate = function(models){
-    user.hasMany(models.coin, {
-      as: "coinsOwned",
-      foreignKey: models.coin.id,
+    user.hasOne(models.portfolio, {
+      as: "portfolio",
+      foreignKey: models.portfolio.id,
       ondelete: "cascade"
     });
   };

@@ -25,7 +25,12 @@ var handleLog = function(event){
     alert("You must enter valid info!");
     return;
   }
-  API.logUser(user);
+  API.logUser(user).then(function(req, res){
+    if(!user){
+      res.redirect("/login");
+    }
+    res.redirect("/");
+  });
 };
 
 $login.on("click", handleLog);

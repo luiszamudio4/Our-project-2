@@ -8,32 +8,15 @@ if (process.env.NODE_ENV === "test") {
 }
 
 db.sequelize.sync(syncOptions).then(function () {
-  db.coin.bulkCreate([
+  db.coinType.bulkCreate([
     {
       name: "Bitcoin",
-      price: 9814.45
+      price: 10420.45
     },
     {
       name: "Ethereum",
-      price: 213.65
-    },
-    {
-      name: "Litecoin",
-      price: 89.61
-    },
-    {
-      name: "Bitcoin Cash",
-      price: 294.94
-    },
-    {
-      name: "EOS",
-      price: 3.92
-    },
-    {
-      name: "Tether",
-      price: 1.00
-    },
-
+      price: 223.62
+    }
   ]).then(function (coins) {
     console.log(coins);
   });
@@ -48,5 +31,20 @@ db.sequelize.sync(syncOptions).then(function () {
       email: "drbaggio@baggioenterprise.com",
       password: "1234"
     }
-  );
+  ).then(function(user){
+    console.log(user);
+  });
 });
+
+// insert into coin(name, price, coinRank)
+// values("Bitcoin", 9814.45, 1),
+//     ("Ethereum", 213.65, 2),
+//     ("Litecoin", 89.61, 3),
+//     ("Bitcoin Cash", 294.94, 4),
+//     ("EOS", 3.92, 5),
+//     ("Tether", 1.00, 6);
+
+// insert into user(username, email, password)
+// values("Mac Daddy", "daddymac@yahoo.com", "jumpjump123"),
+//     ("Dr. Baggio", "bigbags69@gmail.com", "mypasswordyes"),
+//     ("Aubrey Graham", "drake@ovo.com", "wh33lchairJimmy");
