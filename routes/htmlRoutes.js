@@ -1,21 +1,12 @@
 var db = require("../models");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
   // --------- / - MAIN PAGE
   // Load index page
   app.get("/", function(req, res) {
-    db.coin.findAll({}).then(function(dbCoin) {
-      res.render("index", {
-        msg: "Hello!",
-        coins: dbCoin
-      });
-    });
-  });
-
-  // --------- REGISTER
-  app.get("/register", function(req, res){
-    res.render("register");
+    res.render("index");
   });
 
   // --------- /LOGIN - GET
@@ -23,16 +14,9 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.get("/users/", function(req, res){
-    db.user.findAll({}).then(function(dbUser){
-      res.render("users", {user: dbUser});
-    });
-  });
-  // --------- /USERS/:ID
-  // Load example page and pass in an example by id
-  app.get("/users/:id", function(req, res) {
-    db.user.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
-      res.render("profile", {
+  app.get("/dashboard/", isAuthenticated, function(req, res){
+    db.user.findOne({ where: {id: req.user.id} }).then(function(dbUser){
+      res.render("/dashboard", {
         user: dbUser
       });
     });
