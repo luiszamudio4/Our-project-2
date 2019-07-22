@@ -101,31 +101,10 @@
                         <tbody>
                           <tr>
                             <td>
-                              <span id='id_buy_balance'></span>
-                              <div id="id_balance_spiner1">
-                              	<div id="circularG_1" class="circularG"></div>
-                              	<div id="circularG_2" class="circularG"></div>
-                              	<div id="circularG_3" class="circularG"></div>
-                              	<div id="circularG_4" class="circularG"></div>
-                              	<div id="circularG_5" class="circularG"></div>
-                              	<div id="circularG_6" class="circularG"></div>
-                              	<div id="circularG_7" class="circularG"></div>
-                              	<div id="circularG_8" class="circularG"></div>
-                              </div>
+                              {{portfolio.usdBalance}}
                             </td>
                           </tr>
                           <tr><td id='id_buy_coin'></td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class='col-md-6'>
-                      <table>
-                        <thead>
-                          <tr><th>Highest Ask:</th></tr>
-                        </thead>
-                        <tbody>
-                          <tr><td id='id_max_ask'></td></tr>
-                          <tr><td id='id_max_ask_coin'></td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -136,7 +115,7 @@
                 <div class="form-group row">
                   <label for="inputBuyCoin" class="col-md-4 col-form-label form-control-sm">Amount:</label>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputBuyCoin" aria-describedby="id_amount_buy" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
+                    <input type="text" class="form-control" id="inputBuyCoin" placeholder="0.0" aria-describedby="id_amount_buy" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
                     <span class="currency" id="id_amount_buy"></span>
                   </div>
                 </div>
@@ -170,31 +149,10 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <span id='id_sell_balance'></span>
-                                    <div id="id_balance_spiner2">
-                                    	<div id="circularG_1" class="circularG"></div>
-                                    	<div id="circularG_2" class="circularG"></div>
-                                    	<div id="circularG_3" class="circularG"></div>
-                                    	<div id="circularG_4" class="circularG"></div>
-                                    	<div id="circularG_5" class="circularG"></div>
-                                    	<div id="circularG_6" class="circularG"></div>
-                                    	<div id="circularG_7" class="circularG"></div>
-                                    	<div id="circularG_8" class="circularG"></div>
-                                    </div>                                  
+                                    {{portfolio.usdBalance}}                                  
                                   </td>
                                 </tr>
                                 <tr><td id='id_sell_coin'></td></tr>
-                              </tbody>
-                            </table>
-                          </div>
-                          <div class='col-md-6'>
-                            <table>
-                              <thead>
-                                <tr><th>Highest Bid:</th></tr>
-                              </thead>
-                              <tbody>
-                                <tr><td id='id_max_bid'></td></tr>
-                                <tr><td id='id_max_bid_coin'></td></tr>
                               </tbody>
                             </table>
                           </div>
@@ -205,7 +163,7 @@
                         <div class="form-group row">
                           <label for="inputSellCoin" class="col-md-4 col-form-label form-control-sm">Amount:</label>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" id="inputSellAmount" placeholder="0.0" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
+                            <input type="text" class="form-control" id="inputSellCoin" placeholder="0.0" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
                             <span class="currency" id="id_amount_sell"></span>
                           </div>
                         </div>
@@ -255,7 +213,7 @@
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 

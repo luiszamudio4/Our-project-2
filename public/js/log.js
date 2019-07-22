@@ -1,42 +1,39 @@
-var $user = $("#username");
-var $password = $("#password");
-var $login = $("submit");
+$(document).ready(function(){
+  var $user = $("#username");
+  var $password = $("#password");
+  var $login = $("#submit");
+  var user;
 
-var API = {
-  logUser: function(user){
+  function goToDashboard(id){
+    $.get("/api/users" + id, function(){
+      window.location.href = "/dashboard";
+    });
+  }
+
+  function logUser(user){
     $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
+      method: "POST",
       url: "/api/login",
       data: user
+    }).then(function(data){
+      console.log(data);
+      goToDashboard(data.id);
+    }).catch(function(err){
+      console.log(err);
     });
-  },
-  goToDashboard: function(){
-    console.log(req.user);
-    if(!req.user){
-      window.location.href = "/login";
-    }else{
-      window.location.href = "/dashboard";
-    }
   }
-};
 
-var handleLog = function(event){
-  event.preventDefault();
-  debugger;
-  var user = {
-    username: $user.val().trim(),
-    password: $password.val().trim()
-  };
-  if (!(user.name && user.password)) {
-    alert("You must enter valid info!");
-    return;
+
+  function handleLog(event){
+    event.preventDefault();
+    user = {
+      username: $user.val().trim(),
+      password: $password.val().trim()
+    };
+
+    logUser(user);
+  
   }
-  API.logUser(user).then(function(){
-    API.goToDashboard();
-  });
-};
 
-$login.on("click", handleLog);
+  $login.on("click", handleLog);
+});

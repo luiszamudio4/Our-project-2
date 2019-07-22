@@ -1,5 +1,5 @@
 var db = require("../models");
-// var isAuthenticated = require("../config/middleware/isAuthenticated");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
@@ -14,16 +14,15 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.get("/dashboard", function(req, res){
-    res.render("dashboard");
+  app.get("/dashboard", isAuthenticated, function(req, res){
+    db.user.findOne({ where: {id: req.user.id} }).then(function(dbUser){
+      db.portfolio.findOne({ where: {userId: dbUser.id}}).then(function(dbPort){
+        res.render("dashboard", {
+          portfolio: dbPort
+        });
+      });
+    });
   });
-  // app.get("/dashboard/", isAuthenticated, function(req, res){
-  //   db.user.findOne({ where: {id: req.user.id} }).then(function(dbUser){
-  //     res.render("/dashboard", {
-  //       user: dbUser
-  //     });
-  //   });
-  // });
 
   // --------- /COINS
   app.get("/coins/", function (req, res) {
