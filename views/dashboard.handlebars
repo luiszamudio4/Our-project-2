@@ -104,7 +104,6 @@
                               {{portfolio.usdBalance}}
                             </td>
                           </tr>
-                          <tr><td id='id_buy_coin'></td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -113,20 +112,21 @@
               </div>
               <form id="form_buy" class="p-3">
                 <div class="form-group row">
-                  <label for="inputBuyCoin" class="col-md-4 col-form-label form-control-sm">Amount:</label>
+                  <label for="inputBuyCoin" class="col-md-4 col-form-label form-control-sm">Coin:</label>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputBuyCoin" placeholder="0.0" aria-describedby="id_amount_buy" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
-                    <span class="currency" id="id_amount_buy"></span>
+                      <select class="chosen-select" name="buy" id="inputBuyCoin">
+                        <option value="Bitcoin">Bitcoin</option>
+                        <option value="Ethereum">Ethereum</option>
+                      </select>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputBuyAmount" class="col-md-4 col-form-label form-control-sm">Amount:</label>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputBuyAmount" placeholder="0.0" aria-describedby="id_amount_buy" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
-                    <span class="currency" id="id_amount_buy"></span>
+                    <input type="text" class="form-control" id="inputBuyAmount" placeholder="0.0">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Buy</button>
+                <button type="submit" id="buyBtn" class="btn btn-primary">Buy</button>
               </form>
               
             </div>
@@ -152,7 +152,6 @@
                                     {{portfolio.usdBalance}}                                  
                                   </td>
                                 </tr>
-                                <tr><td id='id_sell_coin'></td></tr>
                               </tbody>
                             </table>
                           </div>
@@ -161,20 +160,21 @@
                     </div>
                       <form id="form_sell" class="p-3">
                         <div class="form-group row">
-                          <label for="inputSellCoin" class="col-md-4 col-form-label form-control-sm">Amount:</label>
+                          <label for="inputSellCoin" class="col-md-4 col-form-label form-control-sm">Coin:</label>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" id="inputSellCoin" placeholder="0.0" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
-                            <span class="currency" id="id_amount_sell"></span>
+                            <select class="chosen-select" name="sell" id="inputSellCoin">
+                              <option value="Bitcoin">Bitcoin</option>
+                              <option value="Ethereum">Ethereum</option>
+                            </select>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputSellAmount" class="col-md-4 col-form-label form-control-sm">Amount:</label>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" id="inputSellAmount" placeholder="0.0" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
-                            <span class="currency" id="id_amount_sell"></span>
+                            <input type="text" class="form-control" id="inputSellAmount" placeholder="0.0">
                           </div>
                         </div>
-                        <button type="submit" id="sell" class="btn btn-primary">Sell</button>
+                        <button type="submit" id="sellBtn" class="btn btn-primary">Sell</button>
                       </form>
                   </div>
                 </div>          

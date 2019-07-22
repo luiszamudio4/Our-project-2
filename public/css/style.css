@@ -142,7 +142,7 @@ pre {
   to{ bottom:0; opacity:1 }
 }
 
-/***************************************/
+/* ************************************* */
 /*Loader 2*/
 #id_balance_spiner1{
     position:relative;
@@ -770,3 +770,4 @@ animation:rainbow 5s infinite;
 90% {color: #8000ff;}
 100% {color: #ff0080;}
 }
+
