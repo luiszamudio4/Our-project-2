@@ -7,7 +7,7 @@ $(document).ready(function(){
   var $sellAmt = $("#inputSellAmount");
   var amount = $buyAmt.val();
   var amt = $sellAmt.val();
-  var coinId;
+  var coinId = 1;
 
   function buyCoin(coin, amount){
     $.ajax({
@@ -15,7 +15,6 @@ $(document).ready(function(){
       url: "/api/coins/" + coin
     }).then(function(data){
       console.log(data);
-      coinId = 1;
       $.ajax({
         method: "POST",
         url: "/api/coins/buy/" + coinId,
