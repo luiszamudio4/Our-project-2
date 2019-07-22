@@ -11,11 +11,19 @@ db.sequelize.sync(syncOptions).then(function () {
   db.coinType.bulkCreate([
     {
       name: "Bitcoin",
-      price: 10420.45
+      price: 10520.99
     },
     {
       name: "Ethereum",
-      price: 223.62
+      price: 222.34
+    },
+    {
+      name: "Tether",
+      price: 1.01
+    },
+    {
+      name: "Litecoin",
+      price: 96.45
     }
   ]).then(function (coins) {
     console.log(coins);

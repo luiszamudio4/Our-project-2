@@ -78,13 +78,17 @@ module.exports = function(app){
   // -----------------------------------
   app.post("/api/coins/buy/:id", isAuthenticated, function(req, res) {
     var coinId = req.params.id;
-    var amount = req.body.amount;    
+    var amount = 1;
+    console.log(amount);    
     db.portfolio.findOne({where: {userId: req.user.id}
     }).then(function(dbP){
       db.coinType.findOne({where:{id: coinId}}).then(function(newCoin){
-        var totalCost = parseInt(newCoin.price) * parseInt(amount);
+        var totalCost = newCoin.price * amount;
+        console.log(dbP.usdBalance);
+        console.log(totalCost);
         if(dbP.usdBalance > totalCost){
           var newBalance = parseFloat(dbP.usdBalance) - parseFloat(totalCost);
+          console.log(newBalance);
           db.coin.findOne({where: {portfolioId: dbP.id, coinTypeId: newCoin.id }}).then(function(dbCoin){
             if(!dbCoin){
               db.coin.create({
@@ -94,9 +98,11 @@ module.exports = function(app){
                 coinTypeId: newCoin.id,
                 portfolioId: dbP.id
               }).then(function(dbC){
-                db.portfolio.update({usdBalance: parseFloat(dbP.usdBalance) - parseFloat(newBalance)}, 
-                  {where: {id: dbP.id}});
-                res.json(dbC);
+                db.portfolio.update({usdBalance: newBalance}, 
+                  {where: {id: dbP.id}}).then(function(dbPo){
+                  console.log(dbPo);
+                  res.json(dbPo, dbC);
+                });
               }).catch(function(err){
                 console.log(err.stack);
               });
@@ -104,9 +110,10 @@ module.exports = function(app){
               db.coin.update({amount: dbCoin.amount + amount},
                 {where: {id: dbCoin.id}
                 }).then(function(dbC){
-                db.portfolio.update({usdBalance: parseFloat(dbP.usdBalance) - parseFloat(newBalance)}, 
+                db.portfolio.update({usdBalance: newBalance}, 
                   {where: {id: dbP.id}});
                 res.json(dbC);
+                console.log("also a success!");
               }).catch(function(err){
                 console.log(err.stack);
               });
@@ -115,7 +122,8 @@ module.exports = function(app){
             console.log(err.stack);
           });
         }else{
-          return res.status(403).send("Sorry! Not enough money");
+          res.status(403).send("Sorry! Not enough money");
+          console.log("Sorry!");
         }
       }).catch(function(err){
         console.log(err.stack);
@@ -127,7 +135,7 @@ module.exports = function(app){
 
   app.post("/api/coins/sell/:id", isAuthenticated, function(req, res) {
     var coinId = req.params.id;
-    var amount = req.body.amount;  
+    var amount = 1;  
     db.portfolio.findOne({where: {userId: req.user.id}
     }).then(function(dbP){
       db.coinType.findOne({where:{id: coinId}}).then(function(sellCoin){
@@ -140,7 +148,7 @@ module.exports = function(app){
             db.coin.update({amount: dbCoin.amount - amount},
               {where: {id: dbCoin.id}
               }).then(function(dbC){
-              db.portfolio.update({usdBalance: parseFloat(newBalance) + parseFloat(dbP.usdBalance)}, 
+              db.portfolio.update({usdBalance: newBalance}, 
                 {where: {id: dbP.id}});
               console.log(dbC);
               res.json(dbC);
