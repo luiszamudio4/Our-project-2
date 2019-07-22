@@ -8,6 +8,8 @@ module.exports = function(app){
     db.user.create(req.body).then(function (dbUser) {
       res.json(dbUser);
       db.portfolio.create({name: dbUser.username, userId: dbUser.id});
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
 
@@ -22,6 +24,8 @@ module.exports = function(app){
       include: [{model: db.portfolio}, {as: "portfolio"}]
     }).then(function (dbUser) {
       res.json(dbUser);
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
   // ------- API/USERS/:ID - FIND
@@ -33,12 +37,16 @@ module.exports = function(app){
       include: [{model: db.portfolio}, {as: "portfolio"}]
     }).then(function (dbUser) {
       res.json(dbUser);
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
   // ------- API/USERS/:ID - DELETE
   app.delete("/api/users/:id", isAuthenticated, function (req, res) {
     db.user.destroy({ where: { id: req.params.id } }).then(function (dbUser) {
       res.json(dbUser);
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
   
@@ -52,6 +60,8 @@ module.exports = function(app){
       where: query
     }).then(function(dbCoin) {
       res.json(dbCoin);
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
   // ------- API/COINS/:NAME 
@@ -61,7 +71,9 @@ module.exports = function(app){
         name: req.params.name
       }
     }).then(function(dbCoin){
-      res.json(dbCoin);
+      res.json(dbCoin).catch(function(err){
+        console.log(err.stack);
+      });
     });
   });
     
@@ -87,6 +99,8 @@ module.exports = function(app){
                 db.portfolio.update({usdBalance: parseFloat(dbP.usdBalance) - parseFloat(newBalance)}, 
                   {where: {id: dbP.id}});
                 res.json(dbC);
+              }).catch(function(err){
+                console.log(err.stack);
               });
             }else{
               db.coin.update({amount: dbCoin.amount + amount},
@@ -95,13 +109,21 @@ module.exports = function(app){
                 db.portfolio.update({usdBalance: parseFloat(dbP.usdBalance) - parseFloat(newBalance)}, 
                   {where: {id: dbP.id}});
                 res.json(dbC);
+              }).catch(function(err){
+                console.log(err.stack);
               });
             }
+          }).catch(function(err){
+            console.log(err.stack);
           });
         }else{
           return res.status(403).send("Sorry! Not enough money");
         }
+      }).catch(function(err){
+        console.log(err.stack);
       });
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
 
@@ -124,10 +146,18 @@ module.exports = function(app){
                 {where: {id: dbP.id}});
               console.log(dbC);
               res.json(dbC);
+            }).catch(function(err){
+              console.log(err.stack);
             });
           }
+        }).catch(function(err){
+          console.log(err.stack);
         });
+      }).catch(function(err){
+        console.log(err.stack);
       });
+    }).catch(function(err){
+      console.log(err.stack);
     });
   });
 };
