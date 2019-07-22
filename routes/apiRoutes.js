@@ -66,14 +66,12 @@ module.exports = function(app){
   });
   // ------- API/COINS/:NAME 
   app.get("/api/coins/:name", isAuthenticated, function(req, res){
-    db.coin.findOne({
+    db.coinType.findOne({
       where: {
         name: req.params.name
       }
-    }).then(function(dbCoin){
-      res.json(dbCoin).catch(function(err){
-        console.log(err.stack);
-      });
+    }).then(function(dbCt){
+      res.json(dbCt);
     });
   });
     
@@ -84,7 +82,7 @@ module.exports = function(app){
     db.portfolio.findOne({where: {userId: req.user.id}
     }).then(function(dbP){
       db.coinType.findOne({where:{id: coinId}}).then(function(newCoin){
-        var totalCost = newCoin.price * amount;
+        var totalCost = parseInt(newCoin.price) * parseInt(amount);
         if(dbP.usdBalance > totalCost){
           var newBalance = parseFloat(dbP.usdBalance) - parseFloat(totalCost);
           db.coin.findOne({where: {portfolioId: dbP.id, coinTypeId: newCoin.id }}).then(function(dbCoin){
