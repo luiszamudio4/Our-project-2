@@ -111,9 +111,8 @@ module.exports = function(app){
                 {where: {id: dbCoin.id}
                 }).then(function(dbC){
                 db.portfolio.update({usdBalance: newBalance}, 
-                  {where: {id: dbP.id}}).then(function(dbPo){
-                  res.json(dbPo, dbC);
-                });
+                  {where: {id: dbP.id}});
+                res.json(dbC);
                 console.log("also a success!");
               }).catch(function(err){
                 console.log(err.stack);
