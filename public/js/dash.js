@@ -36,7 +36,6 @@ $(document).ready(function(){
       url: "/api/coins/" + coin
     }).then(function(data){
       console.log(data);
-      coinId = data.id;
       $.ajax({
         method: "POST",
         url: "/api/coins/sell/" + coinId,
